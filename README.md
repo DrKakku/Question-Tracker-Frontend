@@ -7,6 +7,10 @@
   Gatsby Minimal Starter
 </h1>
 
+
+# frontend for the [question tracker app repo](https://github.com/DrKakku/Question-Tracker-app)
+
+
 ## 🚀 Quick start
 
 1.  **Create a Gatsby site.**
@@ -47,3 +51,4 @@
 Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
 
 [<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-minimal)
+# Question-Tracker-Frontend
