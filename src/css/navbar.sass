@@ -1,0 +1,40 @@
+$bgColor: #22333B
+$textCol: #C6AC8F
+$linkCol: #EAE0D5
+
+.navbar
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    height: 10vh
+    padding: 10em
+
+    padding: 1em
+    
+    background-color: $bgColor
+    color: $textCol
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    justify-items: center
+    justify-content: space-between
+    align-items: center
+    
+    h1
+        top:1vh
+        
+        font-size: 3vw
+    
+    .links
+        overflow: hidden
+
+        a
+            padding: 0.7vw
+            margin: 0.5vw
+            color: $textCol
+            text-decoration: solid
+            border: 2px $linkCol dashed
+            &:hover
+                color: $linkCol
+
