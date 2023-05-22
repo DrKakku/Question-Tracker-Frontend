@@ -7,6 +7,7 @@ function DefaultLayoutWrapper({children}) {
   return (
     <div className="defaultLayout">
         <Navbar/>
+        <div className="bufferNavbar">  </div>
 
         <div className="content">
             {children}
