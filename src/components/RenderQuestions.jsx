@@ -23,19 +23,23 @@ function RenderQuestions({ reloadReq }) {
   };
 
   const config = {
-    headers:{
+    headers: {
       "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS"
-    }
+      "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+    },
   };
 
   const handleDelete = (id) => {
     console.log("Deleting id " + id);
     axios
-      .post(apiUrl + "/delQuestion", {
-        modelType: "questions",
-        Id: id,
-      },config)
+      .post(
+        apiUrl + "/delQuestion",
+        {
+          modelType: "questions",
+          Id: id,
+        },
+        config
+      )
       .then((res) => {
         console.log(res.data);
         refreshQuestions();
@@ -47,32 +51,52 @@ function RenderQuestions({ reloadReq }) {
 
   const QuestionComponent = () => {
     if (questionArr.status) {
-      return (
-        <div className="questions">
-          <table>
-            <thead>
-              <tr>
-                <th>Id</th>
-                <th>QuestionName</th>
-                <th>QuestionURL</th>
-                <th>QuestionStatus</th>
-                <th>StartUTC</th>
-              </tr>
-            </thead>
-            <tbody>
-              {questionArr.data.map((data, key) => {
-                return (
-                  <QuestionList
-                    keys={key}
-                    data={data}
-                    functionObj={{ del: handleDelete }}
-                  />
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      );
+      if (questionArr.data.length > 0) {
+        return (
+          <div className="questions">
+            <table>
+              <thead>
+                <tr>
+                {Object.keys(questionArr.data[0]).map((key,index)=>
+        {
+          return(
+            <th key = {index} className={key}>{key}</th>
+          );
+        })}
+                </tr>
+              </thead>
+              <tbody>
+                {questionArr.data.map((data, key) => {
+                  return (
+                    <QuestionList
+                      keys={key}
+                      data={data}
+                      functionObj={{ del: handleDelete }}
+                    />
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        );
+      }
+      else
+      {
+        return (
+          <div className="questions">
+            <table>
+              <thead>
+                <tr>
+                  <th colSpan={4}> There are no questions in the databse right now</th>
+                  <th>Feel Free to add more questions </th>
+                  
+                </tr>
+              </thead>
+              
+            </table>
+          </div>
+        );
+      }
     } else {
       return (
         <div className="questions-fail">

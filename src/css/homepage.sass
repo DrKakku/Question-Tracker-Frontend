@@ -1,19 +1,23 @@
-$font-stack: Helvetica, sans-serif
-$primary-color: #0A0908
-$bgCol : #EAE0D5
+$font-stack     :        Helvetica, sans-serif
+$bgCol          :        #EAE0D5
+$text-col       :        #0A0908
+$accent-col     :        #22333B
+$col1           :        #C6AC8F
+$col2           :        #5E503F
 
 html
     width: 100vw
     height: 100vh
     font: 100% $font-stack
-    color: $primary-color
+    color: $text-col
     background-color: $bgCol
-    display: flex-container
+    display: flexbox
     flex-basis: auto
     flex-direction: column
     justify-content: center
     align-items: center
     justify-items: center
+    animation-duration: 10s
 
 body
     padding-top: 10rem
@@ -32,7 +36,7 @@ body
 
     .content
         padding-left: 2rem
-        display: flexbox
+        display: flex
         align-items: center 
         align-content: center
         justify-items: center
@@ -51,5 +55,15 @@ body
             border-radius: 15px
             max-height: 40vh
             max-width: 80vw
+
+        button
+            align-self: center  
+            justify-self: center
+            display: flex
+            padding: 1rem
+            border-radius: 5px
+            background-color: $accent-col
+            color: $bgCol
+            background-blend-mode: difference
 
     

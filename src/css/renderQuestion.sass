@@ -1,8 +1,48 @@
+$bgCol          :        #EAE0D5
+$text-col       :        #0A0908
+$accent-col     :        #22333B
+$col1           :        #C6AC8F
+$col2           :        #5E503F
+$done           :        #606c38
+$done1          :        #588157
+
 table
+    margin: 1rem
     width: 80vw
     white-space: pre-wrap
     overflow-wrap: break-word
     overflow: hidden
-    td 
-        max-height: 0.2vh
-        text-justify: inter-ideograph
+    text-align: center
+    background-color: rgba(0,0,0,0.4)
+    border-radius: 10px
+    padding:0.5rem
+    tr
+        background-color: $col1
+        align-content: center
+        color: $text-col  
+        border-radius: 5px
+        th
+            background-color: $col2
+            color: $col1
+            border-radius: 5px
+            padding: 1em
+
+        td
+            border-radius: 5px
+            max-height: 0.2vh
+            text-justify: inter-ideograph
+            padding: 0.5em
+        
+    .done
+        background-color: $done
+        align-content: center
+        color: $text-col  
+        border-radius: 5px
+    
+        .QuestionStatus
+                    background-color: $done1
+                    border-radius: 5px
+                    max-height: 0.2vh
+                    text-justify: inter-ideograph
+                    padding: 0.5em
+

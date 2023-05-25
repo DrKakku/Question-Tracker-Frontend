@@ -7,6 +7,6 @@
 
 - text col    ->      #0A0908
 - accent col  ->      #22333B
-- bg col      ->      #22333B
+- bg col      ->      #EAE0D5
 - col1        ->      #C6AC8F
 - col2        ->      #5E503F
