@@ -57,12 +57,13 @@ function RenderQuestions({ reloadReq }) {
             <table>
               <thead>
                 <tr>
-                {Object.keys(questionArr.data[0]).map((key,index)=>
-        {
-          return(
-            <th key = {index} className={key}>{key}</th>
-          );
-        })}
+                  <th>Id</th>
+                  <th>QuestionName</th>
+                  <th>QuestionStatus</th>
+                  <th>QuestionURL</th>
+                  <th colSpan={2}>Start Date time</th>
+                  <th colSpan={2}>End Date time</th>
+                  <th className="del">Delete</th>
                 </tr>
               </thead>
               <tbody>
@@ -79,20 +80,19 @@ function RenderQuestions({ reloadReq }) {
             </table>
           </div>
         );
-      }
-      else
-      {
+      } else {
         return (
           <div className="questions">
             <table>
               <thead>
                 <tr>
-                  <th colSpan={4}> There are no questions in the databse right now</th>
+                  <th colSpan={4}>
+                    {" "}
+                    There are no questions in the databse right now
+                  </th>
                   <th>Feel Free to add more questions </th>
-                  
                 </tr>
               </thead>
-              
             </table>
           </div>
         );

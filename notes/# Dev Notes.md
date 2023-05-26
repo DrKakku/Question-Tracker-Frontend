@@ -10,3 +10,20 @@
 - bg col      ->      #EAE0D5
 - col1        ->      #C6AC8F
 - col2        ->      #5E503F
+
+### metadata server side ke liye ya uss side ka 
+
+EndUTC StartUTC	TotalTimeM	TotalTimeS	type
+
+####input fields available
+Id:
+QuestionName: 
+QuestionURL:
+QuestionStatus:
+StartDate:
+StartTime:
+EndDate:
+EndTime:
+
+Description:[]
+Solution:[]
