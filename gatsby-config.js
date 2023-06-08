@@ -45,13 +45,13 @@ module.exports = {
             },
             __key: "pages",
         },
-        {
-            resolve: "gatsby-plugin-react-svg",
-            options: {
-                rule: {
-                    include: "./src/images/icons/DeleteForever.svg",
-                },
-            },
-        },
+        // {
+        //     resolve: "gatsby-plugin-react-svg",
+        //     options: {
+        //         rule: {
+        //             include: "./src/images/icons/DeleteForever.svg",
+        //         },
+        //     },
+        // },
     ],
 };

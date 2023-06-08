@@ -7,9 +7,8 @@ export default function checkQuestions() {
     <div>
       <DefaultLayoutWrapper>
         <div>
-          THis is the page where you will encounter the answers and can modify
-          them when needed.
-          
+
+        Edit the questions you feel need editing.          
           <br/>
            <RenderQuestions />
         </div>
@@ -17,3 +16,4 @@ export default function checkQuestions() {
     </div>
   );
 }
+export const Head = () => <title>All Question</title>

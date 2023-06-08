@@ -1,7 +1,8 @@
 import React from "react";
 import { StaticImage } from "gatsby-plugin-image";
+import { Link } from "gatsby";
 function QuestionList({ keys, data, functionObj }) {
-  const EndDate_Time = (data) => {
+  const EndDateTime = (data) => {
     if (data.data.EndDate != null && data.data.EndTime != null) {
       return (
         <>
@@ -29,13 +30,25 @@ function QuestionList({ keys, data, functionObj }) {
       <td>{data.QuestionURL}</td>
       <td>{data.StartDate}</td>
       <td>{data.StartTime}</td>
-      <EndDate_Time data={data} />
+      <EndDateTime data={data} />
       <td onClick={() => functionObj.del(data.Id)}>
         <StaticImage
           src="../images/DeleteForever.svg"
           placeholder="blurred"
           alt="Delete Forever"
         />{" "}
+      </td>
+      <td className="editDetails"> 
+      <Link
+      to={`/editQuestion`}
+      state={{data:data.Id}}
+      >
+      <StaticImage
+      src="../images/edit.svg"
+      placeholder="tracedSVG"
+      alt="Edit Details"
+      />
+      </Link>
       </td>
     </tr>
   );

@@ -27,16 +27,16 @@ export default function DataInput() {
     let defaultEndDate = null;
     let defaultEndTime = null;
 
-    let StartDateval = () => {
-      let x = new Date().toISOString();
-      return x;
-    };
-    let temp1 = StartDateval().split("T");
-    let temp2 = temp1[1];
-    temp2 = temp2.slice(0, 5);
+    // let StartDateval = () => {
+    //   let x = new Date().toISOString();
+    //   return x;
+    // };
+    // let temp1 = StartDateval().split("T");
+    // let temp2 = temp1[1];
+    // temp2 = temp2.slice(0, 5);
 
-    let defaultStartDate = temp1[0];
-    let defaultStartTime = temp2;
+    // let defaultStartDate = temp1[0];
+    // let defaultStartTime = temp2;
 
     updateFourmData((prevProps) => ({
       ...prevProps,
@@ -251,3 +251,6 @@ const customDateHandler = (event) => {
     </div>
   );
 }
+
+
+export const Head = () => <title>Add Question</title>

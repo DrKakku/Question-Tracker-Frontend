@@ -64,6 +64,7 @@ function RenderQuestions({ reloadReq }) {
                   <th colSpan={2}>Start Date time</th>
                   <th colSpan={2}>End Date time</th>
                   <th className="del">Delete</th>
+                  <th className="editDetails"> Edit Details</th>
                 </tr>
               </thead>
               <tbody>
