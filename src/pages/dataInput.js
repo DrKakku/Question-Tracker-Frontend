@@ -17,7 +17,7 @@ export default function DataInput() {
     EndTime: null,
   });
 
-  const [startDateCheck,setstartDateCheck]  = useState(false)
+  const [startDateCheck, setstartDateCheck] = useState(false);
 
   useEffect(() => {
     defaultFormVals();
@@ -138,14 +138,12 @@ export default function DataInput() {
     }));
   };
 
-
-const customDateHandler = (event) => {
-  console.log("clicked ")
+  const customDateHandler = (event) => {
+    console.log("clicked ");
     let questionStatus = startDateCheck ? false : true;
-    console.log(startDateCheck)
+    console.log(startDateCheck);
     setstartDateCheck(questionStatus);
   };
-
 
   const EndDateFourm = () => {
     if (fourmData.QuestionStatus) {
@@ -191,7 +189,6 @@ const customDateHandler = (event) => {
         </>
       );
     }
-
   };
 
   return (
@@ -228,13 +225,18 @@ const customDateHandler = (event) => {
               label="Custom Start Date"
             />
             <StartDateFourm />
-            <FourmInput
-              name="QuestionStatus"
-              type="checkbox"
-              stateVal={fourmData.QuestionStatus}
-              onChangeHandler={onCheckBoxChangeHandler}
-              label="Question QuestionStatus"
-            />
+
+            <div className="input">
+              <span> Completion Status :- </span>{" "}
+              <input
+                type="checkbox"
+                name="QuestionStatus"
+                id="QuestionStatus"
+                checked={fourmData["QuestionStatus"]}
+                onChange={onCheckBoxChangeHandler}
+              />
+            </div>
+
             <EndDateFourm />
             <div className="submit">
               <button type="submit">Login</button>
@@ -252,5 +254,4 @@ const customDateHandler = (event) => {
   );
 }
 
-
-export const Head = () => <title>Add Question</title>
+export const Head = () => <title>Add Question</title>;

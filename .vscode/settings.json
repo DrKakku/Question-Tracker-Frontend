@@ -3,5 +3,11 @@
         "Apival",
         "Fourm",
         "setquestion"
-    ]
+    ],
+    "print.editorTitleMenuButton": false,
+    "print.filepathHeadingForIndividuallyPrintedDocuments": false,
+    "print.folder.fileNames": false,
+    "print.lineNumbers": "off",
+    "print.printAndClose": false,
+    "print.colourScheme": "GitHub"
 }
