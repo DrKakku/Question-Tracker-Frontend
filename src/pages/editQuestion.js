@@ -3,6 +3,7 @@ import DefaultLayoutWrapper from "../components/DefaultLayoutWrapper";
 import { Link } from "gatsby";
 import axios from "axios";
 import style from "../css/module.editQuestion.sass";
+import Description from "../components/Description";
 const apiUrl = "http://127.0.0.1:8080";
 
 function EditQuestion({ location }) {
@@ -14,10 +15,22 @@ function EditQuestion({ location }) {
     StartTime: "",
     EndDate: null,
     EndTime: null,
-    Description:[],
-    Solutions:[],
+    Description: [],
+    Solutions: [],
   });
   const [error, setError] = useState(null);
+  const [addDes,setAddDes] = useState(false);
+  const [addQues,setAddQues] = useState(false);
+  const ingestData = (data) => {
+    console.log(data)
+    if (data.StartTime.length > 8) {
+      data.StartTime = data.StartTime.slice(0, 8);
+    }
+    
+    
+    return data;
+    
+  };
 
   const refreshQuestions = () => {
     axios
@@ -27,21 +40,12 @@ function EditQuestion({ location }) {
         query: [{ Id: location.state.data }],
       })
       .then((res) => {
-        let data = res.data.data[0];
-        setQuestion(() => ({
-          ...data,
-        }));
+        let data = ingestData(res.data.data);
+
+        setQuestion(data);
 
         console.log(question);
-        console.log(question.Solutions.length)
-        if (res.data.data[0].StartTime.length > 8) {
-          let newtime = res.data.data[0].StartTime.slice(0, 8);
-          console.log(newtime);
-          setQuestion((prevProps) => ({
-            ...prevProps,
-            StartTime: newtime,
-          }));
-        }
+        console.log(data);
       })
       .catch((e) => {
         console.log(e);
@@ -65,6 +69,7 @@ function EditQuestion({ location }) {
     }
 
     let response = {
+      Id: question.Id,
       QuestionName: question.QuestionName,
       QuestionURL: question.QuestionURL,
       QuestionStatus: question.QuestionStatus,
@@ -128,18 +133,7 @@ function EditQuestion({ location }) {
       });
   };
 
-  // let standardizeTime = () =>
-  // {
-  //   if (question.StartTime.length > 8 )
-  //       {
-  //         let newtime =  res.data.data[0].StartTime.slice(0,8)
-  //         console.log(newtime)
-  //         setQuestion((prevProps) => ({
-  //           ...prevProps,
-  //           StartTime: newtime
-  //         }));
-  //       }
-  // }
+
 
   useEffect(() => {
     refreshQuestions();
@@ -163,6 +157,8 @@ function EditQuestion({ location }) {
       QuestionStatus: questionStatus,
     }));
   };
+
+  
 
   return (
     <DefaultLayoutWrapper>
@@ -253,50 +249,21 @@ function EditQuestion({ location }) {
               ) : (
                 <></>
               )}
-<div className="input">
-                    <span> Add Description :- </span>
-                    <textarea
-                      name="Description"
-                      id="Description"
-                      onChange={onChangeHandler}
-                    >
-                      {question.Description[question.Description.length-1]}
-                      </textarea>
-                  </div>
-              {
-                question.Description.length > 0?
-                <>
-                {question.Description.map((data,key)=>{
-                return(
-                    <p key={key}>{data}</p>
-                )
-                })}
-                </>:
-                <>
-                 
-                </>
-              }
 
-              <br />
-              {
 
-                question.Solutions?
-                <>
-                {question.Solutions.map((data,key)=>{
-                return(
-                    <p key={key}>{data}</p>
-                )
-                })}
-                </>:
-                <>
-                No Solutions Available
-                </>
+              <Description addDes={addDes} question={question} setAddDes={setAddDes} setQuestion={setQuestion} />
 
-              }
               
-
-
-            
+              <br />
+              {question.Solutions ? (
+                <>
+                  {question.Solutions.map((data, key) => {
+                    return <p key={key}>{data}</p>;
+                  })}
+                </>
+              ) : (
+                <>No Solutions Available</>
+              )}
               <button type="submit">Update Changes</button>
             </form>
           </div>

@@ -8,30 +8,34 @@ $done1          :        #588157
 
 table
     margin: 1rem
-    width: 80vw
+    max-width: 80vw
     white-space: pre-wrap
     overflow-wrap: break-word
-    overflow: hidden
+    overflow: visible
     text-align: center
     background-color: rgba(0,0,0,0.4)
     border-radius: 10px
     padding:0.5rem
+    word-wrap: break-word
     tr
         background-color: $col1
         align-content: center
         color: $text-col  
         border-radius: 5px
+        overflow-wrap: break-word
         th
             background-color: $col2
             color: $col1
             border-radius: 5px
             padding: 1em
+            overflow-wrap: break-word
 
         td
             border-radius: 5px
             max-height: 0.2vh
             text-justify: inter-ideograph
             padding: 0.5em
+            overflow-wrap: break-word
         
     .done
         background-color: $done
