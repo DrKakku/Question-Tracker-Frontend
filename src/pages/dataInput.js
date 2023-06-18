@@ -139,9 +139,9 @@ export default function DataInput() {
   };
 
   const customDateHandler = (event) => {
-    console.log("clicked ");
+    //console.log("clicked ");
     let questionStatus = startDateCheck ? false : true;
-    console.log(startDateCheck);
+    //console.log(startDateCheck);
     setstartDateCheck(questionStatus);
   };
 

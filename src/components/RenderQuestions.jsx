@@ -16,6 +16,7 @@ function RenderQuestions({ reloadReq }) {
       .then((res) => {
         console.log(res.data);
         setquestionArr(res.data);
+        console.log(questionArr.data  )
       })
       .catch((e) => {
         console.log(e);
@@ -41,7 +42,7 @@ function RenderQuestions({ reloadReq }) {
         config
       )
       .then((res) => {
-        console.log(res.data);
+        //console.log(res.data);
         refreshQuestions();
       })
       .catch((e) => {
@@ -71,6 +72,7 @@ function RenderQuestions({ reloadReq }) {
                 {questionArr.data.map((data, key) => {
                   return (
                     <QuestionList
+                    key={key}
                       keys={key}
                       data={data}
                       functionObj={{ del: handleDelete }}

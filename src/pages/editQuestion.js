@@ -4,6 +4,7 @@ import { Link } from "gatsby";
 import axios from "axios";
 import style from "../css/module.editQuestion.sass";
 import Description from "../components/Description";
+import Solution from "../components/Solution";
 const apiUrl = "http://127.0.0.1:8080";
 
 function EditQuestion({ location }) {
@@ -16,17 +17,23 @@ function EditQuestion({ location }) {
     EndDate: null,
     EndTime: null,
     Description: [],
-    Solutions: [],
+    Solution: [],
   });
   const [error, setError] = useState(null);
+
   const [addDes,setAddDes] = useState(false);
-  const [addQues,setAddQues] = useState(false);
+  const [desLen, setDesLen] = useState(question.Description.length);
+
+  const [addSol,setAddSol] = useState(false);
+  const [SolLen, setSolLen] = useState(question.Solution.len);
   const ingestData = (data) => {
-    console.log(data)
+    //console.log(data)
+    data = data[0]
     if (data.StartTime.length > 8) {
       data.StartTime = data.StartTime.slice(0, 8);
     }
-    
+    setSolLen(data.Solution.length)
+    setDesLen(data.Description.length)
     
     return data;
     
@@ -44,6 +51,7 @@ function EditQuestion({ location }) {
 
         setQuestion(data);
 
+
         console.log(question);
         console.log(data);
       })
@@ -57,16 +65,29 @@ function EditQuestion({ location }) {
       question.StartDate + "T" + question.StartTime
     );
     const endDateTimeObj = new Date(question.EndDate + "T" + question.EndTime);
-    console.log(endDateTimeObj);
+    //console.log(endDateTimeObj);
     let startDateTime = startDateTimeObj.getTime();
     let endDateTime = endDateTimeObj.getTime();
-    let EndDate;
-    let EndTime;
+    let EndDate = question.EndDate;
+    let EndTime = question.EndTime;
     if (question.QuestionStatus === false) {
-      console.log("entered");
-      let EndDate = null;
-      let EndTime = null;
+      //console.log("entered");
+      EndDate = null;
+      EndTime = null;
     }
+    let desArr=[]
+    for (let i = 0; i < question.Description.length; i++) {
+      desArr.push(question.Description[i].Description)
+      
+    }
+    console.log(question.Solutions)
+    let solArr=[]
+    for (let i = 0; i < question.Solution.length; i++) {
+      solArr.push(question.Solution[i].Solution)
+      
+    }
+
+    console.log(desArr)
 
     let response = {
       Id: question.Id,
@@ -79,9 +100,11 @@ function EditQuestion({ location }) {
       EndTime: EndTime,
       startDateTime: startDateTime,
       endDateTime: endDateTime,
+      Description:desArr,
+      Solution:solArr,
     };
 
-    console.log(response);
+    //console.log(response);
     return response;
   };
 
@@ -93,10 +116,10 @@ function EditQuestion({ location }) {
       return false;
     }
 
-    console.log(question.QuestionStatus === false);
+    //console.log(question.QuestionStatus === false);
 
     if (question.QuestionStatus === false) {
-      console.log("entered");
+      //console.log("entered");
       setQuestion((prevProps) => ({
         ...prevProps,
         EndDate: null,
@@ -126,7 +149,8 @@ function EditQuestion({ location }) {
     axios
       .post(apiUrl + "/updateQuestion", { data: data })
       .then((res) => {
-        console.log(res.data);
+        //console.log(res.data);
+        window.location.href = "/checkQuestions"
       })
       .catch((e) => {
         console.log(e);
@@ -141,8 +165,8 @@ function EditQuestion({ location }) {
 
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
-    console.log(question);
-    console.log(name, value);
+    //console.log(question);
+    //console.log(name, value);
     setQuestion((prevProps) => ({
       ...prevProps,
       [name]: value,
@@ -151,7 +175,7 @@ function EditQuestion({ location }) {
 
   const onCheckBoxChangeHandler = (event) => {
     let questionStatus = question.QuestionStatus ? false : true;
-    console.log(questionStatus);
+    //console.log(questionStatus);
     setQuestion((prevProps) => ({
       ...prevProps,
       QuestionStatus: questionStatus,
@@ -170,7 +194,7 @@ function EditQuestion({ location }) {
           </div>
         ) : (
           <div className="mainContent">
-            <form onSubmit={onSubmitHandler}>
+            <form onSubmit={onSubmitHandler} >
               <div className="input">
                 <span> Question Name :- </span>{" "}
                 <input
@@ -181,7 +205,7 @@ function EditQuestion({ location }) {
                   onChange={onChangeHandler}
                 />
               </div>
-              -
+              
               <div className="input">
                 <span> URL :- </span>{" "}
                 <input
@@ -192,6 +216,7 @@ function EditQuestion({ location }) {
                   onChange={onChangeHandler}
                 />
               </div>
+
               <div className="input">
                 <span> Start Date :- </span>{" "}
                 <input
@@ -202,6 +227,7 @@ function EditQuestion({ location }) {
                   onChange={onChangeHandler}
                 />
               </div>
+
               <div className="input">
                 <span> Start Time :- </span>{" "}
                 <input
@@ -212,6 +238,7 @@ function EditQuestion({ location }) {
                   onChange={onChangeHandler}
                 />
               </div>
+
               <div className="input">
                 <span> Completion Status :- </span>{" "}
                 <input
@@ -222,6 +249,7 @@ function EditQuestion({ location }) {
                   onChange={onCheckBoxChangeHandler}
                 />
               </div>
+
               {question.QuestionStatus ? (
                 <>
                   <div className="input">
@@ -251,19 +279,11 @@ function EditQuestion({ location }) {
               )}
 
 
-              <Description addDes={addDes} question={question} setAddDes={setAddDes} setQuestion={setQuestion} />
+              <Description addDes={addDes} question={question} setAddDes={setAddDes} setQuestion={setQuestion} desLen={desLen} setDesLen={setDesLen} />
+              <Solution addSol={addSol} question={question} setAddSol={setAddSol} setQuestion={setQuestion} SolLen={SolLen} setSolLen={setSolLen} />
 
               
-              <br />
-              {question.Solutions ? (
-                <>
-                  {question.Solutions.map((data, key) => {
-                    return <p key={key}>{data}</p>;
-                  })}
-                </>
-              ) : (
-                <>No Solutions Available</>
-              )}
+              
               <button type="submit">Update Changes</button>
             </form>
           </div>

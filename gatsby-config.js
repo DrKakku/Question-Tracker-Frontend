@@ -29,14 +29,7 @@ module.exports = {
             },
             __key: "images",
         },
-        {
-            resolve: "gatsby-source-filesystem",
-            options: {
-                name: "icons",
-                path: "./src/images/icons/",
-            },
-            __key: "icons",
-        },
+        
         {
             resolve: "gatsby-source-filesystem",
             options: {
