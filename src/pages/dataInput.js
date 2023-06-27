@@ -4,7 +4,7 @@ import FourmInput from "../components/FourmInput";
 import "../css/fourm.sass";
 import axios from "axios";
 import RenderQuestions from "../components/RenderQuestions";
-const apiUrl = "http://127.0.0.1:8080";
+const apiUrl = "http://drkakku.pythonanywhere.com";
 
 export default function DataInput() {
   const [fourmData, updateFourmData] = useState({

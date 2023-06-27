@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../css/renderQuestion.sass";
 import QuestionList from "./QuestionList";
-const apiUrl = "http://127.0.0.1:8080";
+const apiUrl = "http://drkakku.pythonanywhere.com";
 
 function RenderQuestions({ reloadReq }) {
   const [questionArr, setquestionArr] = useState("");

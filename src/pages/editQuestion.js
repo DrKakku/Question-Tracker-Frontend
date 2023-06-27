@@ -5,7 +5,7 @@ import axios from "axios";
 import style from "../css/module.editQuestion.sass";
 import Description from "../components/Description";
 import Solution from "../components/Solution";
-const apiUrl = "http://127.0.0.1:8080";
+const apiUrl = "http://drkakku.pythonanywhere.com";
 
 function EditQuestion({ location }) {
   const [question, setQuestion] = useState({
@@ -20,7 +20,7 @@ function EditQuestion({ location }) {
     Solution: [],
   });
   const [error, setError] = useState(null);
-
+  const [status,setStatus] = useState(false);
   const [addDes,setAddDes] = useState(false);
   const [desLen, setDesLen] = useState(question.Description.length);
 
@@ -50,6 +50,7 @@ function EditQuestion({ location }) {
         let data = ingestData(res.data.data);
 
         setQuestion(data);
+        setStatus(true);
 
 
         console.log(question);
@@ -183,11 +184,11 @@ function EditQuestion({ location }) {
   };
 
   
-
+if (location){
   return (
     <DefaultLayoutWrapper>
       <div>
-        {location.state.status ? (
+        {status ? (
           <div>
             There is nothing to see here please go back using this link
             <Link to="./checkQuestions.js">Go Back</Link>
@@ -291,6 +292,20 @@ function EditQuestion({ location }) {
       </div>
     </DefaultLayoutWrapper>
   );
+}
+else
+{
+  return(
+    <DefaultLayoutWrapper>
+    <div>
+          There is nothing to see here please go back using this link
+          <Link to="./checkQuestions.js">Go Back</Link>
+        </div>
+  </DefaultLayoutWrapper>
+
+  );
+}
+  
 }
 
 export default EditQuestion;
