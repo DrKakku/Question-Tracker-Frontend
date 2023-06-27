@@ -183,12 +183,13 @@ function EditQuestion({ location }) {
     }));
   };
 
-  
-if (location){
+  console.log(status);
+if (status){
   return (
     <DefaultLayoutWrapper>
       <div>
-        {status ? (
+        {!status ? (
+          
           <div>
             There is nothing to see here please go back using this link
             <Link to="./checkQuestions.js">Go Back</Link>
