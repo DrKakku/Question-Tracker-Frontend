@@ -5,7 +5,7 @@ import axios from "axios";
 import style from "../css/module.editQuestion.sass";
 import Description from "../components/Description";
 import Solution from "../components/Solution";
-const apiUrl = "http://drkakku.pythonanywhere.com";
+const apiUrl = "https://drkakku.pythonanywhere.com";
 
 function EditQuestion({ location }) {
   const [question, setQuestion] = useState({
