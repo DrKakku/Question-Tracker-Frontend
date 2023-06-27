@@ -9,7 +9,7 @@ function RenderQuestions({ reloadReq }) {
 
   const refreshQuestions = () => {
     axios
-      .post(apiUrl + "/queryQuestion", {
+      .post(apiUrl + "/queryQuestion/", {
         modelType: "questions",
         queryType: "all",
       })
@@ -34,7 +34,7 @@ function RenderQuestions({ reloadReq }) {
     console.log("Deleting id " + id);
     axios
       .post(
-        apiUrl + "/delQuestion",
+        apiUrl + "/delQuestion/",
         {
           modelType: "questions",
           Id: id,

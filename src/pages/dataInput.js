@@ -120,7 +120,7 @@ export default function DataInput() {
 
   const postQuestion = (data) => {
     axios
-      .post(apiUrl + "/addQuestion", { data: data })
+      .post(apiUrl + "/addQuestion/", { data: data })
       .then((res) => {
         console.log(res.data);
       })

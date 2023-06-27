@@ -41,7 +41,7 @@ function EditQuestion({ location }) {
 
   const refreshQuestions = () => {
     axios
-      .post(apiUrl + "/queryQuestion", {
+      .post(apiUrl + "/queryQuestion/", {
         modelType: "questions",
         queryType: "filterBy",
         query: [{ Id: location.state.data }],
@@ -148,7 +148,7 @@ function EditQuestion({ location }) {
 
   const postQuestion = (data) => {
     axios
-      .post(apiUrl + "/updateQuestion", { data: data })
+      .post(apiUrl + "/updateQuestion/", { data: data })
       .then((res) => {
         //console.log(res.data);
         window.location.href = "/checkQuestions"
